@@ -18,15 +18,24 @@ import java.time.format.DateTimeFormatter;
 public class Expense {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private long id;
 
-    @ManyToOne()
+    @ManyToOne(targetEntity = ExpenseCategory.class)
+    @Column(nullable = false)
     private ExpenseCategory category;
+
+    @Column(name = "amount", nullable = false)
     private float amount;
+
+    @Column(name = "sub_category", nullable = false)
     private String subCategory;
+
+    @Column(name = "notes", nullable = false)
     private String notes;
 
     @CreationTimestamp
+    @Column(name = "date_added", nullable = false)
     private LocalDateTime dateAdded;
 
     @Override

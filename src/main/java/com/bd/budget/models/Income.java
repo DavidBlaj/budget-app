@@ -20,14 +20,20 @@ import java.time.format.DateTimeFormatter;
 public class Income {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private long id;
 
     @ManyToOne()
     private IncomeCategory incomeCategory;
+
+    @Column(name = "amount", nullable = false)
     private float amount;
+
+    @Column(name = "notes", nullable = false)
     private String notes;
 
     @CreationTimestamp
+    @Column(name = "date_added", nullable = false)
     private LocalDateTime dateAdded;
 
     @Override

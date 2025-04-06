@@ -15,8 +15,13 @@ import lombok.NoArgsConstructor;
 public class IncomeCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private long id;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "color", nullable = false)
     private String color;
 
     @Override

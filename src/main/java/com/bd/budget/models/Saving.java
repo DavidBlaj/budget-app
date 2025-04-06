@@ -21,11 +21,17 @@ public class Saving {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private long id;
+
+    @Column(name = "category", nullable = false)
     private String category;
+
+    @Column(name = "amount", nullable = false)
     private float amount;
 
     @CreationTimestamp
+    @Column(name = "date_added", nullable = false)
     private LocalDateTime dateAdded;
 
     @Override
