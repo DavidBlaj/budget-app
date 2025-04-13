@@ -22,16 +22,15 @@ public class Expense {
     private long id;
 
     @ManyToOne(targetEntity = ExpenseCategory.class)
-    @Column(nullable = false)
     private ExpenseCategory category;
 
     @Column(name = "amount", nullable = false)
     private float amount;
 
-    @Column(name = "sub_category", nullable = false)
+    @Column(name = "sub_category")
     private String subCategory;
 
-    @Column(name = "notes", nullable = false)
+
     private String notes;
 
     @CreationTimestamp
