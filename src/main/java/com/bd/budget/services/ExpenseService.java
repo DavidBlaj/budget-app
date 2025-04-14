@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface ExpenseService {
 
-    List<ExpenseDto> findAllExpenses();
+    List<ExpenseDto> findAll();
 
     Expense add(Expense expense);
+
+    Expense findById(Long expenseId);
 }

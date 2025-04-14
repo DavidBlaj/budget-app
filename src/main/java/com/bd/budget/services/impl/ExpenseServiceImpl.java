@@ -1,6 +1,7 @@
 package com.bd.budget.services.impl;
 
 import com.bd.budget.dtos.ExpenseDto;
+import com.bd.budget.exceptions.ResourceNotFoundException;
 import com.bd.budget.models.Expense;
 import com.bd.budget.repositories.ExpenseRepository;
 import com.bd.budget.services.ExpenseService;
@@ -20,7 +21,7 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public List<ExpenseDto> findAllExpenses() {
+    public List<ExpenseDto> findAll() {
         List<Expense> expenses = expenseRepository.findAll();
         System.out.println(expenses);
         return expenses.stream().map((expense) -> mapToExpenseDto(expense)).collect(Collectors.toList());
@@ -29,6 +30,14 @@ public class ExpenseServiceImpl implements ExpenseService {
     @Override
     public Expense add(Expense expense) {
         return expenseRepository.save(expense);
+    }
+
+    @Override
+    public Expense findById(Long expenseId) {
+        return expenseRepository
+                .findById(expenseId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("The expense with given id does not exist: " + expenseId));
     }
 
     private ExpenseDto mapToExpenseDto(Expense expense) {
