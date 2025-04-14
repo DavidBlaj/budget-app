@@ -21,6 +21,14 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
+    public Expense findById(Long expenseId) {
+        return expenseRepository
+                .findById(expenseId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("The expense with given id does not exist: " + expenseId));
+    }
+
+    @Override
     public List<ExpenseDto> findAll() {
         List<Expense> expenses = expenseRepository.findAll();
         System.out.println(expenses);
@@ -33,11 +41,18 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public Expense findById(Long expenseId) {
-        return expenseRepository
+    public Expense update(Long expenseId, Expense updatedExpense) {
+        Expense expense = expenseRepository
                 .findById(expenseId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("The expense with given id does not exist: " + expenseId));
+        expense.setCategory(updatedExpense.getCategory());
+        expense.setAmount(updatedExpense.getAmount());
+        expense.setSubCategory(updatedExpense.getSubCategory());
+        expense.setNotes(updatedExpense.getNotes());
+        expense.setDateAdded(updatedExpense.getDateAdded());
+
+        return expenseRepository.save(expense);
     }
 
     private ExpenseDto mapToExpenseDto(Expense expense) {

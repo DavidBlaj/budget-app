@@ -9,7 +9,9 @@ public interface ExpenseService {
 
     List<ExpenseDto> findAll();
 
+    Expense findById(Long expenseId);
+
     Expense add(Expense expense);
 
-    Expense findById(Long expenseId);
+   Expense update(Long expenseId, Expense updatedExpense);
 }

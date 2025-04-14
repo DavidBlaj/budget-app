@@ -30,7 +30,6 @@ public class Expense {
     @Column(name = "sub_category")
     private String subCategory;
 
-
     private String notes;
 
     @CreationTimestamp
