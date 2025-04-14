@@ -19,6 +19,6 @@ public class IncomeController {
 
     @GetMapping
     public List<Income> getIncomes() {
-        return incomeService.findAllIncomes();
+        return incomeService.findAll();
     }
 }

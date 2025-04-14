@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IncomeService {
 
-    List<Income> findAllIncomes();
+    List<Income> findAll();
 }
