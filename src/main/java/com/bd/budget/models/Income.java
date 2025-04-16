@@ -23,7 +23,8 @@ public class Income {
     private long id;
 
     @ManyToOne()
-    private IncomeCategory incomeCategory;
+    @JoinColumn(name = "category_id", nullable = false)
+    private IncomeCategory category;
 
     @Column(name = "amount", nullable = false)
     private float amount;
@@ -39,7 +40,7 @@ public class Income {
     public String toString() {
         return "Income  -> " +
                 " Id - " + id +
-                " | Category - " + incomeCategory +
+                " | Category - " + category +
                 " | Amount - " + amount +
                 " | Notes - " + notes +
                 " | Date added - " + dateAdded.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));

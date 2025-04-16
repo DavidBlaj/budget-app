@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ExpenseServiceImpl implements ExpenseService {
-    private ExpenseRepository expenseRepository;
+    private final ExpenseRepository expenseRepository;
 
     @Autowired
     public ExpenseServiceImpl(ExpenseRepository expenseRepository) {

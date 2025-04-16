@@ -1,11 +1,9 @@
 package com.bd.budget.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.lang.NonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,14 +20,16 @@ public class Expense {
     private long id;
 
     @ManyToOne(targetEntity = ExpenseCategory.class)
+    @JoinColumn(name = "category_id", nullable = false)
     private ExpenseCategory category;
 
     @Column(name = "amount", nullable = false)
     private float amount;
 
-    @Column(name = "sub_category")
+    @Column(name = "sub_category", nullable = false)
     private String subCategory;
 
+    @Column(name = "notes", nullable = false)
     private String notes;
 
     @CreationTimestamp
