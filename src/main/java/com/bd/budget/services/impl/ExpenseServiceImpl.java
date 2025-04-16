@@ -55,6 +55,15 @@ public class ExpenseServiceImpl implements ExpenseService {
         return expenseRepository.save(expense);
     }
 
+    @Override
+    public void delete(Long expenseId) {
+        Expense expense = expenseRepository
+                .findById(expenseId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("The expense with given id does not exist: " + expenseId));
+        expenseRepository.deleteById(expenseId);
+    }
+
     private ExpenseDto mapToExpenseDto(Expense expense) {
         return ExpenseDto.builder()
                 .id(expense.getId())

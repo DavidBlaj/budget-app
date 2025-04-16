@@ -43,5 +43,11 @@ public class ExpenseController {
         return ResponseEntity.ok(expense);
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> delete(@PathVariable("id") Long expenseId) {
+        expenseService.delete(expenseId);
+        return ResponseEntity.ok("Expense entry has been successfully deleted!");
+    }
+
 
 }
