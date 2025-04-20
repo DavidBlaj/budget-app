@@ -3,6 +3,8 @@ package com.bd.budget.services.impl;
 import com.bd.budget.dtos.ExpenseDto;
 import com.bd.budget.exceptions.ResourceNotFoundException;
 import com.bd.budget.models.Expense;
+import com.bd.budget.models.ExpenseCategory;
+import com.bd.budget.repositories.ExpenseCategoryRepository;
 import com.bd.budget.repositories.ExpenseRepository;
 import com.bd.budget.services.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +16,12 @@ import java.util.stream.Collectors;
 @Service
 public class ExpenseServiceImpl implements ExpenseService {
     private final ExpenseRepository expenseRepository;
+    private final ExpenseCategoryRepository expenseCategoryRepository;
 
     @Autowired
-    public ExpenseServiceImpl(ExpenseRepository expenseRepository) {
+    public ExpenseServiceImpl(ExpenseRepository expenseRepository, ExpenseCategoryRepository expenseCategoryRepository) {
         this.expenseRepository = expenseRepository;
+        this.expenseCategoryRepository = expenseCategoryRepository;
     }
 
     @Override
@@ -34,6 +38,12 @@ public class ExpenseServiceImpl implements ExpenseService {
         System.out.println(expenses);
         return expenses.stream().map((expense) -> mapToExpenseDto(expense)).collect(Collectors.toList());
     }
+
+    @Override
+    public List<ExpenseCategory> findAllExpenseCategories() {
+        return expenseCategoryRepository.findAll();
+    }
+
 
     @Override
     public Expense add(Expense expense) {

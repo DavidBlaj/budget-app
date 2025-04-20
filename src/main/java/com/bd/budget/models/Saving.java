@@ -31,7 +31,7 @@ public class Saving {
     private float amount;
 
     @CreationTimestamp
-    @Column(name = "date_added", nullable = false)
+    @Column(name = "date_added", nullable = false, updatable = false )
     private LocalDateTime dateAdded;
 
     @Override

@@ -2,6 +2,7 @@ package com.bd.budget.controllers;
 
 import com.bd.budget.dtos.ExpenseDto;
 import com.bd.budget.models.Expense;
+import com.bd.budget.models.ExpenseCategory;
 import com.bd.budget.services.ExpenseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,11 @@ public class ExpenseController {
     @GetMapping
     public ResponseEntity<List<ExpenseDto>> findAll() {
         return ResponseEntity.ok(expenseService.findAll());
+    }
+
+    @GetMapping("/categories")
+    public ResponseEntity<List<ExpenseCategory>> findAllExpenseCategories() {
+        return ResponseEntity.ok(expenseService.findAllExpenseCategories());
     }
 
     @PostMapping

@@ -33,7 +33,7 @@ public class Expense {
     private String notes;
 
     @CreationTimestamp
-    @Column(name = "date_added", nullable = false)
+    @Column(name = "date_added", nullable = false, updatable = false)
     private LocalDateTime dateAdded;
 
     @Override
