@@ -18,32 +18,32 @@ public class SavingController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Saving> findById(@PathVariable("id") Long savingId) {
+    public ResponseEntity<Saving> findSavingById(@PathVariable("id") Long savingId) {
         Saving saving = savingService.findById(savingId);
         return ResponseEntity.ok(saving);
     }
 
     @GetMapping("/savings")
-    public List<Saving> findAll() {
+    public List<Saving> findAllSavings() {
         return savingService.findAll();
     }
 
     @PostMapping
-    public ResponseEntity<Saving> add(@RequestBody Saving saving) {
+    public ResponseEntity<Saving> addSaving(@RequestBody Saving saving) {
         Saving addedSaving = savingService.add(saving);
         return new ResponseEntity<>(addedSaving, HttpStatus.CREATED);
     }
 
 
     @PutMapping("{id}")
-    public ResponseEntity<Saving> update(@PathVariable("id") Long savingId,
+    public ResponseEntity<Saving> updateSaving(@PathVariable("id") Long savingId,
                                           @RequestBody Saving updatedSaving) {
         Saving saving = savingService.update(savingId, updatedSaving);
         return ResponseEntity.ok(saving);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> delete(@PathVariable("id") Long savingId) {
+    public ResponseEntity<String> deleteSaving(@PathVariable("id") Long savingId) {
         savingService.delete(savingId);
         return ResponseEntity.ok("Saving entry has been successfully deleted!");
     }

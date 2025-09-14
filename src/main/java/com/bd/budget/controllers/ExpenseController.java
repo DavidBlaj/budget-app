@@ -20,13 +20,13 @@ public class ExpenseController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Expense> findById(@PathVariable("id") Long expenseId) {
+    public ResponseEntity<Expense> findExpenseById(@PathVariable("id") Long expenseId) {
         Expense expense = expenseService.findById(expenseId);
         return ResponseEntity.ok(expense);
     }
 
     @GetMapping
-    public ResponseEntity<List<ExpenseDto>> findAll() {
+    public ResponseEntity<List<ExpenseDto>> findAllExpenses() {
         return ResponseEntity.ok(expenseService.findAll());
     }
 
@@ -36,21 +36,21 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ResponseEntity<Expense> add(@RequestBody Expense expense) {
+    public ResponseEntity<Expense> addExpense(@RequestBody Expense expense) {
         Expense savedExpense = expenseService.add(expense);
         return new ResponseEntity<>(savedExpense, HttpStatus.CREATED);
     }
 
 
     @PutMapping("{id}")
-    public ResponseEntity<Expense> update(@PathVariable("id") Long expenseId,
+    public ResponseEntity<Expense> updateExpense(@PathVariable("id") Long expenseId,
                                           @RequestBody Expense updatedExpense) {
         Expense expense = expenseService.update(expenseId, updatedExpense);
         return ResponseEntity.ok(expense);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<String> delete(@PathVariable("id") Long expenseId) {
+    public ResponseEntity<String> deleteExpense(@PathVariable("id") Long expenseId) {
         expenseService.delete(expenseId);
         return ResponseEntity.ok("Expense entry has been successfully deleted!");
     }

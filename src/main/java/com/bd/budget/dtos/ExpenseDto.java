@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class ExpenseDto {
 
     private long id;
-    private ExpenseCategory expenseCategory;
+    private ExpenseCategory category;
     private float amount;
     private String subCategory;
     private String notes;

@@ -77,7 +77,7 @@ public class ExpenseServiceImpl implements ExpenseService {
     private ExpenseDto mapToExpenseDto(Expense expense) {
         return ExpenseDto.builder()
                 .id(expense.getId())
-                .expenseCategory(expense.getCategory())
+                .category(expense.getCategory())
                 .amount(expense.getAmount())
                 .subCategory(expense.getSubCategory())
                 .notes(expense.getNotes())

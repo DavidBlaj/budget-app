@@ -22,7 +22,7 @@ public class Income {
     @Column(name = "id", nullable = false)
     private long id;
 
-    @ManyToOne()
+    @ManyToOne(targetEntity = IncomeCategory.class, optional = false)
     @JoinColumn(name = "category_id", nullable = false)
     private IncomeCategory category;
 

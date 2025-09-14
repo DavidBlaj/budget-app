@@ -19,7 +19,7 @@ public class Expense {
     @Column(name = "id", nullable = false)
     private long id;
 
-    @ManyToOne(targetEntity = ExpenseCategory.class)
+    @ManyToOne(targetEntity = ExpenseCategory.class, optional = false)
     @JoinColumn(name = "category_id", nullable = false)
     private ExpenseCategory category;
 
