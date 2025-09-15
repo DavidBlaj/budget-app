@@ -67,6 +67,6 @@ public class IncomeServiceImpl implements IncomeService {
                 .orElseThrow(() ->
                         new ResourceNotFoundException("The income entry with given id does not exist: " + incomeId));
 
-        incomeRepository.deleteById(incomeId);
+        incomeRepository.delete(income);
     }
 }

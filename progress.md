@@ -4,3 +4,8 @@
         geben schien.
       - Außerdem habe ich „optional=false“ zu „incomeCategory“ und „expenseCategory“ hinzugefügt, um sicherzustellen, 
         dass im Frontend keine „undefinierten“ Fehler auftreten.
+
+1.9.1 - Ich habe dem Projekt die Datei progress.md hinzugefügt.
+
+1.10  - In order to have better error handling, Spring Profiles were added: "dev" and "prod" for now
+      - "GlobalExceptionHandler" Datei wurde hinzugefügt.

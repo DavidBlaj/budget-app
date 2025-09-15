@@ -36,7 +36,7 @@ public class ExpenseServiceImpl implements ExpenseService {
     public List<ExpenseDto> findAll() {
         List<Expense> expenses = expenseRepository.findAll();
         System.out.println(expenses);
-        return expenses.stream().map((expense) -> mapToExpenseDto(expense)).collect(Collectors.toList());
+        return expenses.stream().map(this::mapToExpenseDto).collect(Collectors.toList());
     }
 
     @Override
@@ -71,7 +71,7 @@ public class ExpenseServiceImpl implements ExpenseService {
                 .findById(expenseId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("The expense with given id does not exist: " + expenseId));
-        expenseRepository.deleteById(expenseId);
+        expenseRepository.delete(expense);
     }
 
     private ExpenseDto mapToExpenseDto(Expense expense) {
