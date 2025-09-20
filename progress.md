@@ -9,3 +9,6 @@
 
 1.10  - In order to have better error handling, Spring Profiles were added: "dev" and "prod" for now
       - "GlobalExceptionHandler" Datei wurde hinzugefügt.
+
+1.FINAL - Ich habe alles gelöscht, was mit dem aktuellen Modell zusammenhängt. 
+        - Ich bereite mich auf die nächste version der App vor.
