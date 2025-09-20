@@ -12,3 +12,5 @@
 
 1.FINAL - Ich habe alles gelöscht, was mit dem aktuellen Modell zusammenhängt. 
         - Ich bereite mich auf die nächste version der App vor.
+
+2.0 - New models are going to be created for the application: User, CustomCategory, StandardCategory, Transaction
