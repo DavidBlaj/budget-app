@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 public class StandardCategory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(name = "name", unique = true, nullable = false)

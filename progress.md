@@ -14,3 +14,6 @@
         - Ich bereite mich auf die nächste version der App vor.
 
 2.0 - New models are going to be created for the application: User, CustomCategory, StandardCategory, Transaction
+2.1 Create repositories for the model, and fix Transaction model
+2.2 Ich habe für "User" Modell Service und Controller hinzugefügt. 
+    Außerdem habe ich auch kleinere Änderungen and den anderen Modellen vorgenommen.

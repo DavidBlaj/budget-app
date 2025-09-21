@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -27,4 +27,13 @@ public class User {
 
     @Column(name = "username", nullable = false)
     private String username;
+
+    @Override
+    public String toString() {
+        return "User -> " +
+                "id - " + id +
+                " | email - " + email +
+                " | passwordHash: " + passwordHash +
+                " | username: " + username;
+    }
 }
