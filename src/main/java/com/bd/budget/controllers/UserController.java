@@ -18,14 +18,14 @@ public class UserController {
 
     @GetMapping("{id}")
     public ResponseEntity<User> findUserById(@PathVariable("id") Long userId) {
-        User user = userService.findById(userId);
+        User user = userService.findUserById(userId);
 
         return ResponseEntity.ok(user);
     }
 
     @GetMapping
     public ResponseEntity<List<User>> findAllUsers() {
-        List<User> users = userService.findAll();
+        List<User> users = userService.findAllUsers();
         return ResponseEntity.ok(users);
     }
 
@@ -37,14 +37,14 @@ public class UserController {
 
     @PutMapping("{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") Long userId, @RequestBody User updatedUser) {
-        User user = userService.update(userId, updatedUser);
+        User user = userService.updateUser(userId, updatedUser);
 
         return ResponseEntity.ok(user);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") Long userId) {
-        userService.delete(userId);
+        userService.deleteUser(userId);
 
         return ResponseEntity.ok("User has been successfully deleted.");
     }

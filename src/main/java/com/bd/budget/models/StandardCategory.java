@@ -18,7 +18,7 @@ public class StandardCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
     @Column(name = "name", unique = true, nullable = false)

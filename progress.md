@@ -17,3 +17,5 @@
 2.1 Create repositories for the model, and fix Transaction model
 2.2 Ich habe für "User" Modell Service und Controller hinzugefügt. 
     Außerdem habe ich auch kleinere Änderungen and den anderen Modellen vorgenommen.
+
+2.3 Ich habe für "StandardCategory" Modell Service und Controller hinzugefügt. 

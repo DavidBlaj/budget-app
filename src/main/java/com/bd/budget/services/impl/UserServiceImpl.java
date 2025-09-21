@@ -16,16 +16,15 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-
     @Override
-    public User findById(Long userId) {
+    public User findUserById(Long userId) {
         return userRepository.findById(userId)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("The user with given id does not exist: " + userId));
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User> findAllUsers() {
         return userRepository.findAll();
     }
 
@@ -35,8 +34,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(Long userId, User updatedUser) {
-        User user = findById(userId);
+    public User updateUser(Long userId, User updatedUser) {
+        User user = findUserById(userId);
 
         user.setEmail(updatedUser.getEmail());
         user.setPasswordHash(updatedUser.getPasswordHash());
@@ -46,8 +45,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(Long userId) {
-        User user = findById(userId);
+    public void deleteUser(Long userId) {
+        User user = findUserById(userId);
 
         userRepository.delete(user);
     }
