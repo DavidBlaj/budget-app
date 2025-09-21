@@ -27,6 +27,13 @@ public class CustomCategory {
     private StandardCategory standardCategory;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false, updatable = false)
     private User user;
+
+    public void setUser(User user) {
+        if(this.user != null) {
+            throw new UnsupportedOperationException("User cannot be changed once set!");
+        }
+        this.user = user;
+    }
 }
