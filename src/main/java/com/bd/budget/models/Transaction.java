@@ -36,7 +36,7 @@ public class Transaction {
     private StandardCategory standardCategory;
 
     @ManyToOne()
-    @JoinColumn(name = "custom_category_id", nullable = false)
+    @JoinColumn(name = "custom_category_id")
     private CustomCategory customCategory;
 
     @ManyToOne(optional = false)
