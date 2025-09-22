@@ -19,3 +19,7 @@
     Außerdem habe ich auch kleinere Änderungen and den anderen Modellen vorgenommen.
 
 2.3 Ich habe für "StandardCategory" Modell Service und Controller hinzugefügt. 
+2.4 Ich habe für "CustomCategory" Modell Service und Controller hinzugefügt. 
+2.5  I have modified the "update" method from a normal "PUT" to a "PATCH". I did this because i only wanted to modify 
+     the 'name' and the 'standardCategory' for a CustomCategory. I added a dto with 'name' and 'standardCategoryId',
+     and also added a Mapper.

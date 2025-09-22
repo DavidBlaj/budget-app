@@ -1,8 +1,12 @@
 package com.bd.budget.services.impl;
 
+import com.bd.budget.dtos.CustomCategoryUpdateDto;
 import com.bd.budget.exceptions.ResourceNotFoundException;
+import com.bd.budget.mappers.CustomCategoryMapper;
 import com.bd.budget.models.CustomCategory;
+import com.bd.budget.models.StandardCategory;
 import com.bd.budget.repositories.CustomCategoryRepository;
+import com.bd.budget.repositories.StandardCategoryRepository;
 import com.bd.budget.services.CustomCategoryService;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +15,12 @@ import java.util.List;
 @Service
 public class CustomCategoryServiceImpl implements CustomCategoryService {
     private final CustomCategoryRepository customCategoryRepository;
+    private final StandardCategoryRepository standardCategoryRepository;
 
-    public CustomCategoryServiceImpl(CustomCategoryRepository customCategoryRepository) {
+    public CustomCategoryServiceImpl(CustomCategoryRepository customCategoryRepository,
+                                     StandardCategoryRepository standardCategoryRepository) {
         this.customCategoryRepository = customCategoryRepository;
+        this.standardCategoryRepository = standardCategoryRepository;
     }
 
     @Override
@@ -35,12 +42,17 @@ public class CustomCategoryServiceImpl implements CustomCategoryService {
     }
 
     @Override
-    public CustomCategory updatedCustomCategory(Long customCategoryId, CustomCategory updatedCustomCategory) {
-        CustomCategory customCategory = findCustomCategoryById(customCategoryId);
+    public CustomCategory updateCustomCategory(Long id, CustomCategoryUpdateDto dto) {
+        CustomCategory customCategory = findCustomCategoryById(id);
 
-        customCategory.setName(updatedCustomCategory.getName());
-        customCategory.setStandardCategory(updatedCustomCategory.getStandardCategory());
-        customCategory.setUser(updatedCustomCategory.getUser());
+        StandardCategory standardCategory = null;
+
+        if(dto.getStandardCategoryId() != null) {
+            standardCategory = standardCategoryRepository.findById(dto.getStandardCategoryId()).orElseThrow(() ->
+                    new ResourceNotFoundException("Standard Category not found"));
+        }
+
+        CustomCategoryMapper.applyUpdate(customCategory, dto, standardCategory);
 
         return customCategoryRepository.save(customCategory);
     }

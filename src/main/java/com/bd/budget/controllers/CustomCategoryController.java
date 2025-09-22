@@ -1,5 +1,6 @@
 package com.bd.budget.controllers;
 
+import com.bd.budget.dtos.CustomCategoryUpdateDto;
 import com.bd.budget.models.CustomCategory;
 import com.bd.budget.services.CustomCategoryService;
 import org.springframework.http.ResponseEntity;
@@ -38,8 +39,8 @@ public class CustomCategoryController {
 
     @PutMapping("{id}")
     public ResponseEntity<CustomCategory> updateCustomCategory(@PathVariable("id") Long id,
-                                                                   @RequestBody CustomCategory updateCustomCategory) {
-        CustomCategory customCategory = service.updatedCustomCategory(id, updateCustomCategory);
+                                                                   @RequestBody CustomCategoryUpdateDto dto) {
+        CustomCategory customCategory = service.updateCustomCategory(id, dto);
 
         return ResponseEntity.ok(customCategory);
     }

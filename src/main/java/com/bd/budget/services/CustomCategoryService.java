@@ -1,5 +1,6 @@
 package com.bd.budget.services;
 
+import com.bd.budget.dtos.CustomCategoryUpdateDto;
 import com.bd.budget.models.CustomCategory;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface CustomCategoryService {
 
     CustomCategory addCustomCategory(CustomCategory customCategory);
 
-    CustomCategory updatedCustomCategory(Long id, CustomCategory updatedCustomCategory);
+    CustomCategory updateCustomCategory(Long id, CustomCategoryUpdateDto dto);
 
     void deleteCustomCategory(Long customCategoryId);
 }
