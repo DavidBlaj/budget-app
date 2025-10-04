@@ -34,8 +34,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(Long userId, User updatedUser) {
-        User user = findUserById(userId);
+    public User updateUser(Long id, User updatedUser) {
+        User user = findUserById(id);
 
         user.setEmail(updatedUser.getEmail());
         user.setPasswordHash(updatedUser.getPasswordHash());
@@ -45,9 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(Long userId) {
-        User user = findUserById(userId);
-
-        userRepository.delete(user);
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
     }
 }

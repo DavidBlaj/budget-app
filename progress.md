@@ -23,3 +23,8 @@
 2.5  I have modified the "update" method from a normal "PUT" to a "PATCH". I did this because i only wanted to modify 
      the 'name' and the 'standardCategory' for a CustomCategory. I added a dto with 'name' and 'standardCategoryId',
      and also added a Mapper.
+
+2.6 
+    Among other things I have defined a rule for naming my methods 'findBy...' instead of using 'getBy...'. The thing is
+    that when getters are generated, the methods automatically start with 'get...'. In order to keep things simple, I
+    will not use 'get...' in the service or repository context.

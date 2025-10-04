@@ -39,7 +39,7 @@ public class StandardCategoryController {
     @PutMapping("{id}")
     public ResponseEntity<StandardCategory> updateStandardCategory(@PathVariable("id") Long id,
                                                                    @RequestBody StandardCategory updateStandardCategory) {
-        StandardCategory standardCategory = service.updatedStandardCategory(id, updateStandardCategory);
+        StandardCategory standardCategory = service.updateStandardCategory(id, updateStandardCategory);
 
         return ResponseEntity.ok(standardCategory);
     }

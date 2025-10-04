@@ -12,7 +12,7 @@ public interface StandardCategoryService {
 
     StandardCategory addStandardCategory(StandardCategory standardCategory);
 
-    StandardCategory updatedStandardCategory(Long standardCategoryId, StandardCategory updatedStandardCategory);
+    StandardCategory updateStandardCategory(Long standardCategoryId, StandardCategory updatedStandardCategory);
 
     void deleteStandardCategory(Long standardCategoryId);
 }

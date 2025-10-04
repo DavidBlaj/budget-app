@@ -1,6 +1,5 @@
 package com.bd.budget.models;
 
-import com.bd.budget.enums.TransactionType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,10 +25,6 @@ public class Transaction {
 
     @Column(precision = 9, scale = 4, name = "amount", nullable = false)
     private BigDecimal amount;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "transaction_type", nullable = false)
-    private TransactionType transactionType;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "standard_category_id", nullable = false)

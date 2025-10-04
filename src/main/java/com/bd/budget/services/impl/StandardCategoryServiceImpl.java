@@ -35,7 +35,7 @@ public class StandardCategoryServiceImpl implements StandardCategoryService {
     }
 
     @Override
-    public StandardCategory updatedStandardCategory(Long standardCategoryId, StandardCategory updatedStandardCategory) {
+    public StandardCategory updateStandardCategory(Long standardCategoryId, StandardCategory updatedStandardCategory) {
         StandardCategory standardCategory = findStandardCategoryById(standardCategoryId);
 
         standardCategory.setName(updatedStandardCategory.getName());
