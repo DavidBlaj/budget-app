@@ -28,3 +28,6 @@
     Among other things I have defined a rule for naming my methods 'findBy...' instead of using 'getBy...'. The thing is
     that when getters are generated, the methods automatically start with 'get...'. In order to keep things simple, I
     will not use 'get...' in the service or repository context.
+
+2.7 In this commit, I worked on defining the updateTransaction method.
+    I tried to make sure that it covers everything I will need for the future.

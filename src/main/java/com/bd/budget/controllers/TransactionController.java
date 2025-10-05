@@ -1,6 +1,7 @@
 package com.bd.budget.controllers;
 
 
+import com.bd.budget.dtos.TransactionUpdateDto;
 import com.bd.budget.models.Transaction;
 import com.bd.budget.services.TransactionService;
 import org.springframework.http.ResponseEntity;
@@ -32,12 +33,11 @@ public class TransactionController {
 
     @PutMapping("{id}")
     public ResponseEntity<Transaction> updateTransaction(@PathVariable("id") Long id,
-                                                         @RequestBody Transaction updatedTransaction) {
-        Transaction transaction = transactionService.updateTransaction(id, updatedTransaction);
+                                                         @RequestBody TransactionUpdateDto dto) {
+        Transaction transaction = transactionService.updateTransaction(id, dto);
 
         return ResponseEntity.ok(transaction);
     }
-
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteTransaction(@PathVariable("id") Long id) {
         transactionService.deleteTransaction(id);

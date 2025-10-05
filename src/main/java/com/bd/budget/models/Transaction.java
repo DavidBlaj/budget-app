@@ -39,8 +39,8 @@ public class Transaction {
     private User user;
 
     @CreationTimestamp
-    @Column(name = "created_at", nullable = false)
-    private LocalDate createdAt;
+    @Column(name = "date", nullable = false)
+    private LocalDate date;
 
     @Column(name = "description")
     private String description;
