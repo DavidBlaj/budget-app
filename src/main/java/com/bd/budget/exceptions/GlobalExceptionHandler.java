@@ -1,40 +1,60 @@
 package com.bd.budget.exceptions;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    private final Environment environment;
 
-    private final Environment env;
-
-    public GlobalExceptionHandler(Environment env) {
-        this.env=env;
+    public GlobalExceptionHandler(Environment environment) {
+        this.environment = environment;
     }
 
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<Map<String, Object>> handleNotFound(ResourceNotFoundException exception, HttpServletRequest request) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("status", HttpStatus.NOT_FOUND.value());
-        body.put("message", exception.getMessage());
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ApiErrorResponse> handleRuntimeException(RuntimeException exception, WebRequest request) {
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 
-        // Extra information only shows in "dev" mode
-        if(Arrays.asList(env.getActiveProfiles()).contains("dev")) {
-            body.put("path", request.getRequestURI());
-            body.put("exception", exception.getClass().getSimpleName());
-            body.put("timestamp", new Date());
+        if (exception instanceof ConflictException) status = HttpStatus.CONFLICT;
+        else if (exception instanceof ResourceNotFoundException) status = HttpStatus.NOT_FOUND;
+        else if (exception instanceof ForbiddenActionException) status = HttpStatus.FORBIDDEN;
+        else if (exception instanceof InvalidInputException) status = HttpStatus.BAD_REQUEST;
+
+        boolean isDev = Arrays.asList(environment.getActiveProfiles()).contains("dev");
+
+        ApiErrorResponse errorResponse;
+
+        if (isDev) {
+            errorResponse = new ApiErrorResponse(
+                    LocalDateTime.now(),
+                    status.value(),
+                    status.getReasonPhrase(),
+                    exception.getMessage(),
+                    request.getDescription(false).replace("uri=", ""),
+                    exception.getClass().getName(),
+                    Arrays.toString(exception.getStackTrace())
+            );
+        } else {
+            errorResponse = new ApiErrorResponse(
+                    LocalDateTime.now(),
+                    status.value(),
+                    status.getReasonPhrase(),
+                    exception.getMessage(),
+                    request.getDescription(false).replace("uri=", ""),
+                    null,
+                    null
+            );
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+
+        return new ResponseEntity<>(errorResponse, status);
+
     }
 }

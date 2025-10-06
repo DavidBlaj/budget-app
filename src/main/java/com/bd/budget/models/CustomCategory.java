@@ -1,5 +1,6 @@
 package com.bd.budget.models;
 
+import com.bd.budget.exceptions.ForbiddenActionException;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,7 +33,7 @@ public class CustomCategory {
 
     public void setUser(User user) {
         if(this.user != null) {
-            throw new UnsupportedOperationException("User cannot be changed once set!");
+            throw new ForbiddenActionException("User cannot be changed once set!");
         }
         this.user = user;
     }

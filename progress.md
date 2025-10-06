@@ -31,3 +31,9 @@
 
 2.7 In this commit, I worked on defining the updateTransaction method.
     I tried to make sure that it covers everything I will need for the future.
+
+2.8 I implemented 4 basic exceptions: ConflictException, ForbiddenActionException, 
+    InvalidInputException and ResourceNotFoundException.
+    Added the ApiErrorResponse dto, for a cleaner and more readable version of GlobalExceptionHandler.
+    Used 'Environment' to be able to work with spring profiles, and construct by api error response body accordingly.
+    Did small modifications in the code I have already written by replacing standard exceptions with my custom ones.

@@ -1,6 +1,7 @@
 package com.bd.budget.services.impl;
 
 import com.bd.budget.dtos.TransactionUpdateDto;
+import com.bd.budget.exceptions.InvalidInputException;
 import com.bd.budget.exceptions.ResourceNotFoundException;
 import com.bd.budget.models.CustomCategory;
 import com.bd.budget.models.StandardCategory;
@@ -53,17 +54,17 @@ public class TransactionServiceImpl implements TransactionService {
             LocalDate today = LocalDate.now();
             LocalDate pastDateLimit = today.minusMonths(6);
             if (dto.getDate().isAfter(today)) {
-                throw new IllegalArgumentException("Transaction date cannot be in the future.");
+                throw new InvalidInputException("Transaction date cannot be in the future.");
             }
             if (dto.getDate().isBefore(pastDateLimit)) {
-                throw new IllegalArgumentException("Transaction date cannot be older than 6 months.");
+                throw new InvalidInputException("Transaction date cannot be older than 6 months.");
             }
 
             transaction.setDate(dto.getDate());
         }
 
         if (customCategoryExists && standardCategoryExists) {
-            throw new IllegalArgumentException("Cannot update both standard and custom categories at the same time");
+            throw new InvalidInputException("Cannot update both standard and custom categories at the same time");
         }
 
         if (customCategoryExists) {
